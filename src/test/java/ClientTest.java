@@ -63,13 +63,6 @@ public class ClientTest {
         assertEquals(true, Client.all().get(1).equals(secondClient));
     }
 
-    @Test
-    public void save_assignsIdToObject(){
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        client.save();
-        Client savedClient = Client.all().get(0);
-        assertEquals(client.getId(), savedClient.getId());
-    }
 
     @Test
     public void getId_clientInstantiatesWithAnId(){

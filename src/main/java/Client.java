@@ -30,8 +30,8 @@ public int getId(){
 }
 
 public static List<Client> all(){
-        String sql  = "SELECT id, name, gender, phoneNumber FROM client";
         try(Connection con = DB.sql2o.open()){
+            String sql  = "SELECT id, name, gender, phoneNumber FROM client";
             return con.createQuery(sql).executeAndFetch(Client.class);
         }
 
