@@ -11,26 +11,32 @@ public class StylistTest{
 
      @Test 
     public void stylists_instantiatesCorrectly_true() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com");
         assertEquals(true, myStylist instanceof Stylist);
     }
 
     @Test 
     public void getName_stylistInstantiatesWithName_Jackline() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com");
         assertEquals("Jackline Mumbi", myStylist.getName());
     }
 
     @Test 
     public void getphoneNumber_stylistInstantiatesWithphoneNumber_Integer() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com");
         assertEquals(1234567890, myStylist.getphoneNumber());
     }
 
     @Test 
     public void getage_stylistInstantiatesWithage_Integer() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com");
         assertEquals(24, myStylist.getAge());
+    }
+
+    @Test 
+    public void getemail_stylistInstantiatesWithemail_String() {
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com");
+        assertEquals("abigailw15njuguna@gmail.com", myStylist.getEmail());
     }
 
     @After
