@@ -105,6 +105,8 @@ public class ClientTest {
         assertEquals(null, Client.find(myClientId));
     }
 
+    
+
     @After
     public void tearDown() {
         try(Connection con = DB.sql2o.open()) {

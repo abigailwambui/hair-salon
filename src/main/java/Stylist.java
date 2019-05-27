@@ -7,6 +7,7 @@ import org.sql2o.*;
         private int age;
         private String email;
         private String workExperience;
+        private int id;
 
     public Stylist(String name, int phoneNumber, int age, String email, String workExperience) {
         this.name = name;
@@ -37,4 +38,46 @@ import org.sql2o.*;
     public String getWorkExperience() {
         return workExperience;
     }
+
+    public int getId() {
+        return id;
     }
+
+    public static List<Stylist> all(){
+        try(Connection con = DB.sql2o.open()){
+        String sql  = "SELECT * FROM stylists";
+            return con.createQuery(sql).executeAndFetch(Stylist.class);
+        }
+    }
+
+        @Override
+    public boolean equals(Object otherStylist){
+        if (!(otherStylist instanceof Stylist)){
+            return false;
+        } else {
+            Stylist newStylist = (Stylist) otherStylist;
+            return  this.getName().equals(newStylist.getName()) &&
+                    this.getphoneNumber() == newStylist.getphoneNumber() &&
+                    this.getAge() == newStylist.getAge() &&
+                    this.getEmail().equals(newStylist.getEmail()) &&
+                    this.getWorkExperience().equals(newStylist.getWorkExperience()) &&
+                    this.getId() == newStylist.getId();
+        }
+    }
+
+    public void save(){
+        try(Connection con = DB.sql2o.open()){
+            String sql = "INSERT INTO stylists (name, phoneNumber, age, email, workExperience) VALUES (:name, :phoneNumber, :age, :email, :workExperience)";
+           this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("phoneNumber", this.phoneNumber)
+                    .addParameter("age", this.age)
+                    .addParameter("email", this.email)
+                    .addParameter("workExperience", this.workExperience)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+    }
+    
