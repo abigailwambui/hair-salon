@@ -52,15 +52,15 @@ public class StylistTest{
         assertTrue(myStylist.getId() > 0);
     }
 
-    // @Test
-    // public void all_returnAllInstancesOfStylistAs_True(){
-    //     Stylist firstStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
-    //     firstStylist.save();
-    //     Stylist secondStylist = new Stylist("Sophia Rehema", 0711556677, 25, "Sophieburrus@gmail.com", "I have worked as a stylist for Beyonce for 2yrs");
-    //     secondStylist.save();
-    //     assertEquals(true, Stylist.all().get(0).equals(firstStylist));
-    //     assertEquals(true, Stylist.all().get(1).equals(secondStylist));
-    // }
+    @Test
+    public void all_returnAllInstancesOfStylistAs_True(){
+        Stylist firstStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        firstStylist.save();
+        Stylist secondStylist = new Stylist("Sophia Rehema", 0711556677, 25, "Sophieburrus@gmail.com", "I have worked as a stylist for Beyonce for 2yrs");
+        secondStylist.save();
+        assertEquals(true, Stylist.all().get(0).equals(firstStylist));
+        assertEquals(true, Stylist.all().get(1).equals(secondStylist));
+    }
 
     @Test
     public void equals_returnsTrueIfAllInstancesAreTheSame_true(){
@@ -69,26 +69,20 @@ public class StylistTest{
         assertTrue(firstStylist.equals(secondStylist));
     }
 
-    // @Test
-    // public void save_savesintoDatabase_true(){
-    //     Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
-    //     myStylist.save();
-    //     assertTrue(Stylist.all().get(0).equals(myStylist));
-    // }
-
-    // @Test
-    // public void save_assignsIdToObject() {
-    //   Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
-    //   myStylist.save();
-    //   Stylist savedStylist = Stylist.all().get(0);
-    //   assertEquals(myStylist.getId(), savedStylist.getId());
-    //   }
+    @Test
+    public void save_savesintoDatabase_true(){
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        myStylist.save();
+        assertTrue(Stylist.all().get(0).equals(myStylist));
+    }
 
     @After
     public void tearDown() {
         try(Connection con = DB.sql2o.open()) {
-        String sql = "DELETE FROM clients *;";
-        con.createQuery(sql).executeUpdate();
+        String sqlStylist = "DELETE FROM stylists *;";
+        String sqlClient = "DELETE FROM clients *;";
+        con.createQuery(sqlStylist).executeUpdate();
+        con.createQuery(sqlClient).executeUpdate();
         }
     }
 }

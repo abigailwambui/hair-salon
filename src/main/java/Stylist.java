@@ -45,7 +45,7 @@ import org.sql2o.*;
 
     public static List<Stylist> all(){
         try(Connection con = DB.sql2o.open()){
-        String sql  = "SELECT * FROM stylists";
+        String sql  = "SELECT id, name, phoneNumber, age, email, workExperience FROM stylists";
             return con.createQuery(sql).executeAndFetch(Stylist.class);
         }
     }
