@@ -76,6 +76,15 @@ public class StylistTest{
         assertTrue(Stylist.all().get(0).equals(myStylist));
     }
 
+    @Test
+    public void find_returnsmyStylistWithSameId_secondStylist() {
+        Stylist firstStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        firstStylist.save();
+        Stylist secondStylist = new Stylist("Sophia Rehema", 0711556677, 25, "Sophieburrus@gmail.com", "I have worked as a stylist for Beyonce for 2yrs");
+        secondStylist.save();
+        assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
+    }
+
     @After
     public void tearDown() {
         try(Connection con = DB.sql2o.open()) {
