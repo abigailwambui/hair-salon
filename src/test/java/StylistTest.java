@@ -94,6 +94,16 @@ public class StylistTest{
         assertEquals(updated.getName(), Stylist.find(myStylist.getId()).getName());
     }
 
+    @Test
+    public void delete_deletesStylist_true() {
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        myStylist.save();
+        int myStylistId = myStylist.getId();
+        myStylist.delete();
+        assertEquals(null, Stylist.find(myStylistId));
+    }
+
+
     @After
     public void tearDown() {
         try(Connection con = DB.sql2o.open()) {
