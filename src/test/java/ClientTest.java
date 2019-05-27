@@ -6,69 +6,103 @@ public class ClientTest {
 
     @Before
     public void setUp() {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", "abigail", "hair_salon");
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", "abigail", "123");
     }
 
     @Test 
-    public void client_instantiatesCorrectly_true() {
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        assertEquals(true, client instanceof Client);
+    public void myClient_instantiatesCorrectly_true() {
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        assertEquals(true, myClient instanceof Client);
     }
 
     @Test 
-    public void client_instantiatesWithName_String() {
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        assertEquals("Zion Mwema", client.getName());
+    public void myClient_instantiatesWithName_String() {
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        assertEquals("Zion Mwema", myClient.getName());
     }
 
     @Test 
-    public void client_instantiatesWithGender_String() {
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        assertEquals("male", client.getGender());
+    public void myClient_instantiatesWithGender_String() {
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        assertEquals("male", myClient.getGender());
     }
     
     @Test 
-    public void client_instantiatesWithphoneNumber_Integer() {
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        assertEquals(0711556677, client.getphoneNumber());
+    public void myClient_instantiatesWithphoneNumber_Integer() {
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        assertEquals(0711556677, myClient.getphoneNumber());
     }
 
     @Test 
-    public void client_instantiatesWithStylistId_Integer() {
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        assertEquals(0711556677, client.getphoneNumber());
+    public void myClient_instantiatesWithStylistId_Integer() {
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        assertEquals(1, myClient.getstylistId());
     }
 
     @Test
     public void equals_returnsTrueIfAllInstancesAreTheSame_true(){
-        Client firstClient = new Client("Zion Mwema", "male", 0711556677);
-        Client secondClient = new Client("Zion Mwema", "male", 0711556677);
+        Client firstClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        Client secondClient = new Client("Zion Mwema", "male", 0711556677, 1);
         assertTrue(firstClient.equals(secondClient));
     }
 
     @Test
     public void save_returnsTrueIfInstancesAreTheSame(){
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        client.save();
-        assertTrue(Client.all().get(0).equals(client));
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        myClient.save();
+        assertTrue(Client.all().get(0).equals(myClient));
     }
 
     @Test
+    public void save_assignsIdToObject() {
+      Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+      myClient.save();
+      Client savedClient = Client.all().get(0);
+      assertEquals(myClient.getId(), savedClient.getId());
+      }
+
+    @Test
     public void all_returnAllInstancesOfClientAs_True(){
-        Client firstClient = new Client("Zion Mwema", "male", 0711556677);
+        Client firstClient = new Client("Zion Mwema", "male", 0711556677, 1);
         firstClient.save();
-        Client secondClient = new Client("Zion Mwema", "male", 0711556677);
+        Client secondClient = new Client("Sophia Rehema", "female", 0711556677, 1);
         secondClient.save();
         assertEquals(true, Client.all().get(0).equals(firstClient));
         assertEquals(true, Client.all().get(1).equals(secondClient));
     }
 
+    @Test
+    public void getId_myClientInstantiatesWithAnId(){
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        myClient.save();
+        assertTrue(myClient.getId()>0);
+    }
+
+     @Test
+    public void find_returnsmyClientWithSameId_secondClient() {
+        Client firstClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        firstClient.save();
+        Client secondClient = new Client("Sophia Rehema", "female", 0711556677, 1);
+        secondClient.save();
+        assertEquals(Client.find(secondClient.getId()), secondClient);
+    }
 
     @Test
-    public void getId_clientInstantiatesWithAnId(){
-        Client client = new Client("Zion Mwema", "male", 0711556677);
-        client.save();
-        assertTrue(client.getId()>0);
+    public void update_updatesClientDescription_true() {
+        Client myClient = new Client("Zachariah Jabari", "male", 0711556677, 1);
+        myClient.save();
+        myClient.update("Sophia Rehema", "female", 0711556677, 1);
+        Client updated = new Client("Sophia Rehema", "female", 0711556677, 1);
+        assertEquals(updated.getName(), Client.find(myClient.getId()).getName());
+    }
+
+    @Test
+    public void delete_deletesClient_true() {
+        Client myClient = new Client("Zion Mwema", "male", 0711556677, 1);
+        myClient.save();
+        int myClientId = myClient.getId();
+        myClient.delete();
+        assertEquals(null, Client.find(myClientId));
     }
 
     @After
