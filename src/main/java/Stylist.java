@@ -6,12 +6,14 @@ import org.sql2o.*;
         private int phoneNumber;
         private int age;
         private String email;
+        private String workExperience;
 
-    public Stylist(String name, int phoneNumber, int age, String email) {
+    public Stylist(String name, int phoneNumber, int age, String email, String workExperience) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.age = age;
         this.email = email;
+        this.workExperience = workExperience;
     }
 
     public String getName() {
@@ -30,5 +32,9 @@ import org.sql2o.*;
 
     public String getEmail() {
         return email;
+    }
+
+    public String getWorkExperience() {
+        return workExperience;
     }
     }
