@@ -1,0 +1,27 @@
+#if ($stylist)
+  <h1>$stylist.getName() clients:</h1>
+  <hr>
+  <h2>$stylist.getphoneNumber()</h2>
+  <hr>
+  <h2>$stylist.getAge()</h2>
+  <hr>
+  <h2>$stylist.getEmail()</h2>
+  <hr>
+  <h2>$stylist.getWorkExperience()</h2>
+  <hr>
+  <ul>
+    #foreach($client in $stylist.getClients())
+     <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
+    #end
+  </ul>
+#else
+  <em><p>Oops! We can't seem to find that Category.</p></em>
+#end
+
+<a href="/">Add a new Client</a>
+<a href="/stylists">All Stylists</a>
+<hr>
+
+<form action="/stylists/$stylist.getId()/delete" method="post">
+      <button type= "submit" class="btn btn-danger" id="delete-category">Delete Stylist</button>
+ </form>     
