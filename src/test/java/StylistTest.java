@@ -11,22 +11,27 @@ public class StylistTest{
 
      @Test 
     public void stylists_instantiatesCorrectly_true() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
         assertEquals(true, myStylist instanceof Stylist);
     }
 
     @Test 
     public void getName_stylistInstantiatesWithName_Jackline() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
         assertEquals("Jackline Mumbi", myStylist.getName());
     }
 
     @Test 
     public void getphoneNumber_stylistInstantiatesWithphoneNumber_Integer() {
-        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890);
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
         assertEquals(1234567890, myStylist.getphoneNumber());
     }
 
+    @Test 
+    public void getage_stylistInstantiatesWithage_Integer() {
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24);
+        assertEquals(24, myStylist.getAge());
+    }
 
     @After
     public void tearDown() {
