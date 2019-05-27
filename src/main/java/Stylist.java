@@ -82,10 +82,10 @@ import org.sql2o.*;
     public static Stylist find(int id) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "SELECT id, name, phoneNumber, age, email, workExperience FROM stylists where id=:id";
-            Stylist Stylist = con.createQuery(sql)
+            Stylist stylist = con.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Stylist.class);
-            return Stylist;
+            return stylist;
         }
     }
 
