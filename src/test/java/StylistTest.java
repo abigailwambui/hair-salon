@@ -62,12 +62,12 @@ public class StylistTest{
     //     assertEquals(true, Stylist.all().get(1).equals(secondStylist));
     // }
 
-    // @Test
-    // public void equals_returnsTrueIfAllInstancesAreTheSame_true(){
-    //     Stylist firstStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
-    //     Stylist secondStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
-    //     assertTrue(firstStylist.equals(secondStylist));
-    // }
+    @Test
+    public void equals_returnsTrueIfAllInstancesAreTheSame_true(){
+        Stylist firstStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        Stylist secondStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        assertTrue(firstStylist.equals(secondStylist));
+    }
 
     // @Test
     // public void save_savesintoDatabase_true(){
