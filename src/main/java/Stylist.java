@@ -103,12 +103,25 @@ import org.sql2o.*;
         }
     }
 
-    public void delete() {
+    public List<Client> every() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM clients where stylistId=:id";
+            return con.createQuery(sql)
+                .addParameter("id", this.id)
+                .executeAndFetch(Client.class);
+        }
+    }
+
+    public void deleteStylist() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "DELETE FROM stylists WHERE id = :id;";
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
+            String sql2 = "DELETE FROM clients WHERE stylistId=:id; ";
+            con.createQuery(sql2)
+                .addParameter("id", id)
+                .executeUpdate();
         }
     }
 

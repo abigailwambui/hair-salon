@@ -94,13 +94,30 @@ public class StylistTest{
         assertEquals(updated.getName(), Stylist.find(myStylist.getId()).getName());
     }
 
+    @Test 
+    public void getClients_retrievesAllClientsFromDatabase_clientsList() {
+        Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
+        myStylist.save();
+        Client firstClient = new Client("Zion Mwema", "male", 0711556677, myStylist.getId());
+        firstClient.save();
+        assertTrue(myStylist.every().contains(firstClient));
+    }
+
     @Test
     public void delete_deletesStylist_true() {
         Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
         myStylist.save();
+        Client firstClient = new Client("Zion Mwema", "male", 0711556677, myStylist.getId());
+        firstClient.save();
+        Client secondClient = new Client("Sophia Rehema", "female", 0711556677, myStylist.getId());
+        secondClient.save();
         int myStylistId = myStylist.getId();
-        myStylist.delete();
+        int myClientId = firstClient.getId();
+        int mySecondClientId = secondClient.getId();
+        myStylist.deleteStylist();
         assertEquals(null, Stylist.find(myStylistId));
+        assertEquals(null, Client.find(myClientId));
+        assertEquals(null, Client.find(mySecondClientId));
     }
 
 
