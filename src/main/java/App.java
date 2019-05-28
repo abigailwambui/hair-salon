@@ -143,7 +143,7 @@ public class App{
             int age = Integer.parseInt(request.queryParams("age"));
             String email = request.queryParams("email");
             String workExperience = request.queryParams("workExperience");
-            stylist.update(name, phoneNumber, age, email, workExperience);
+            stylist.updateStylist(name, phoneNumber, age, email, workExperience);
             String url = String.format("/stylists/%d", stylist.getId());
             response.redirect(url);
             return new ModelAndView(model, layout);

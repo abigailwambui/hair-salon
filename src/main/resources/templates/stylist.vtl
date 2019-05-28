@@ -1,13 +1,13 @@
 #if ($stylist)
-  <h1>$stylist.getName()</h1>
+  <h1>Name: $stylist.getName()</h1>
   <hr>
-  <h2>$stylist.getphoneNumber()</h2>
+  <h2>Phone Number: $stylist.getphoneNumber()</h2>
   <hr>
-  <h2>$stylist.getAge()</h2>
+  <h2>Age:$stylist.getAge()</h2>
   <hr>
-  <h2>$stylist.getEmail()</h2>
+  <h2>Email:$stylist.getEmail()</h2>
   <hr>
-  <h2>$stylist.getWorkExperience()</h2>
+  <h2>Work Experience: $stylist.getWorkExperience()</h2>
   <hr>
   <h3>Clients:</h3>
   <ul>
@@ -19,15 +19,15 @@
   <em><p>Oops! We can't seem to find that Stylist.</p></em>
 #end
 
-<a href="/form">Add a new Client</a>
+<a href="/form">Add a new Client</a><br><br>
 <a href="/stylists">All Stylists</a>
-<hr>
+<hr><br><br>
 
 <form action="/stylists/$stylist.getId()/update" method="post">
   <label for="name">Stylist Name</label>
   <input id="name" name="name" type="text">
   <button type="submit" class="btn btn-info">Update Stylist</button>
-</form>
+</form><br><br>
 
 <form action="/stylists/$stylist.getId()/delete" method="post">
       <button type= "submit" class="btn btn-danger" id="delete-stylist">Delete Stylist</button>

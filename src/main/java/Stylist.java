@@ -89,7 +89,7 @@ import org.sql2o.*;
         }
     }
 
-    public void update(String name, int phoneNumber, int age, String email, String workExperience) {
+    public void updateStylist(String name, int phoneNumber, int age, String email, String workExperience) {
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE stylists SET name = :name, phoneNumber = :phoneNumber, age = :age, email = :email, workExperience = :workExperience WHERE id = :id";
             con.createQuery(sql)

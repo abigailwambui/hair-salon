@@ -89,7 +89,7 @@ public class StylistTest{
     public void update_updatesStylitDescription_true() {
         Stylist myStylist = new Stylist("Jackline Mumbi", 1234567890, 24, "abigailw15njuguna@gmail.com", "I have worked for 10years as a stylist for Shakira");
         myStylist.save();
-        myStylist.update("Zara Versache", 0711556677, 26, "zaraversache@gmail.com", "I have worked as a stylist for Lizzie for 2yrs");
+        myStylist.updateStylist("Zara Versache", 0711556677, 26, "zaraversache@gmail.com", "I have worked as a stylist for Lizzie for 2yrs");
         Stylist updated = new Stylist("Zara Versache", 0711556677, 26, "zaraversache@gmail.com", "I have worked as a stylist for Lizzie for 2yrs");
         assertEquals(updated.getName(), Stylist.find(myStylist.getId()).getName());
     }
