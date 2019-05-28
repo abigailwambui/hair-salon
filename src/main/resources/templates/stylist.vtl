@@ -1,5 +1,5 @@
 #if ($stylist)
-  <h1>$stylist.getName() clients:</h1>
+  <h1>$stylist.getName()</h1>
   <hr>
   <h2>$stylist.getphoneNumber()</h2>
   <hr>
@@ -9,8 +9,9 @@
   <hr>
   <h2>$stylist.getWorkExperience()</h2>
   <hr>
+  <h3>Clients:</h3>
   <ul>
-    #foreach($client in $stylist.getClient())
+    #foreach($client in $stylist.every())
      <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
     #end
   </ul>
