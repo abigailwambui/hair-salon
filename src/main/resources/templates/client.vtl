@@ -11,8 +11,19 @@
 <h2>Edit client:</h2><br><br>
 
 <form action="/stylists/$client.getStylistId()/clients/$client.getId()" method="post">
-  <label for="name">Client Name</label>
+  <label for="name">Name</label>
   <input id="name" name="name" type="text">
+
+  <label for="gender">Gender</label>
+  <input id="gender" name="gender" type="text">
+
+  <label for="phoneNumber">Phone Number</label>
+  <input id="phoneNumber" name="phoneNumber" type="text">
+
+  <label for="stylistId">StylistId</label>
+  <input id="stylistId" name="stylistId" type="text"><br><br>
+
+
   <button type="submit" class="btn btn-info">Update Client</button>
 </form><br><br>
 
