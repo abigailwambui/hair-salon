@@ -1,0 +1,18 @@
+<br><br><br><h1>Stylists</h1>
+
+<h2> Stylist List: </h2>
+
+#if($stylists)
+  <p>Click on a stylist to see their clients:</p>
+  <ul>
+    #foreach ($stylist in $stylists)
+      <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li><br><br>
+    #end
+  </ul>
+#else
+  <p>There are no stylists yet!</p>
+#end
+
+
+<br><br>
+<a href="/form">Add a new Stylist</a>

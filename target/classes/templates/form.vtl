@@ -1,0 +1,67 @@
+
+<h2>New Stylist:</h2>
+
+<form action="/stylists" method="post">
+
+<div class="form-group">
+  <label for="name">Stylist name</label>
+  <input id="name" name="name" type="text" class="form-control>
+</div><br><br>
+
+<div class="form-group">
+  <label for="phoneNumber">Stylist PhoneNumber</label>
+  <input id="phoneNumber" name="phoneNumber" type="text" class="form-control>
+</div><br><br>
+
+
+<div class="form-group">
+  <label for="age">Stylist Age</label>
+  <input id="age" name="age" type="text" class="form-control>
+</div><br><br>
+
+
+<div class="form-group">
+  <label for="email">Stylist Email</label>
+  <input id="email" name="email" type="text" class="form-control>
+</div><br><br>
+
+
+<div class="form-group">
+  <label for="workExperience">Stylist Work Experience</label>
+  <input id="workExperience" name="workExperience" type="text">
+</div><br><br>
+
+
+  <button type="submit" class="btn btn-success">Add Stylist</button>
+</form>
+
+<h2>New Client:</h2>
+
+<form action="/clients" method="post">
+  <label for="stylistId">Select a List</label>
+<select id='stylistId' name='stylistId' type='text'>
+  #foreach($stylist in $stylists)
+    <option value="$stylist.getId()">$stylist.getName()</option>
+  #end
+</select>
+
+  <div class="form-group">
+    <label for="name">Client Name</label>
+    <input id="name" name="name" type="text" class="form-control">
+  </div><br><br>
+
+
+  <div class="form-group">
+    <label for="gender">Client Gender</label>
+    <input id="gender" name="gender" type="text" class="form-control">
+  </div><br><br>
+
+
+  <div class="form-group">
+    <label for="phoneNumber">Client PhoneNumber</label>
+    <input id="phoneNumber" name="phoneNumber" type="text" class="form-control">
+  </div><br><br>
+
+
+<button type="submit" class="btn btn-success">Add a Client</button>
+</form>
