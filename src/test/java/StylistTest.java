@@ -4,10 +4,8 @@ import org.sql2o.*;
 
 public class StylistTest{
 
-    @Before
-    public void setUp() {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", "abigail", "123");
-    }
+    @Rule 
+    public DatabaseRule database = new DatabaseRule();
 
     @Test 
     public void stylists_instantiatesCorrectly_true() {
@@ -121,13 +119,5 @@ public class StylistTest{
     }
 
 
-    @After
-    public void tearDown() {
-        try(Connection con = DB.sql2o.open()) {
-        String sqlStylist = "DELETE FROM stylists *;";
-        String sqlClient = "DELETE FROM clients *;";
-        con.createQuery(sqlStylist).executeUpdate();
-        con.createQuery(sqlClient).executeUpdate();
-        }
-    }
+    
 }

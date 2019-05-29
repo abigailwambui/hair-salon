@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 
 public class ClientTest {
 
-    @Before
-    public void setUp() {
-        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", "abigail", "123");
-    }
+    @Rule 
+    public DatabaseRule database = new DatabaseRule();
 
     @Test 
     public void myClient_instantiatesCorrectly_true() {
@@ -107,14 +105,4 @@ public class ClientTest {
 
 
 
-    @After
-    public void tearDown() {
-        try(Connection con = DB.sql2o.open()) {
-        String sqlClient = "DELETE FROM clients *;";
-        String sqlStylist = "DELETE FROM stylists *;";
-        con.createQuery(sqlStylist).executeUpdate();
-        con.createQuery(sqlClient).executeUpdate();
-
-        }
-    }
 }
